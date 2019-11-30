@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoomVOImpl extends AbstractDao implements IRoomVODao {
+public class RoomVODaoImpl extends AbstractDao implements IRoomVODao {
 
     private static final String SELECT_SQL = "SELECT room.id, " +
             "room.isFree, " +
@@ -50,6 +50,7 @@ public class RoomVOImpl extends AbstractDao implements IRoomVODao {
         roomVO.setDoctorFirstName(resultSet.getString("doctor.first_name"));
         roomVO.setDoctorLastName(resultSet.getString("doctor.last_name"));
         roomVO.setDoctorAge(resultSet.getInt("doctor.age"));
+        roomVO.setDoctorSpecialization(resultSet.getString("doctor.specialization"));
         roomVO.setEmployeeFirstName(resultSet.getString("empl.first_name"));
         roomVO.setEmployeeLastName(resultSet.getString("empl.last_name"));
         roomVO.setEmployeePosition(resultSet.getString("empl.position"));
@@ -69,6 +70,7 @@ public class RoomVOImpl extends AbstractDao implements IRoomVODao {
             roomVO.setDoctorFirstName(resultSet.getString("doctor.first_name"));
             roomVO.setDoctorLastName(resultSet.getString("doctor.last_name"));
             roomVO.setDoctorAge(resultSet.getInt("doctor.age"));
+            roomVO.setDoctorSpecialization(resultSet.getString("doctor.specialization"));
             roomVO.setEmployeeFirstName(resultSet.getString("empl.first_name"));
             roomVO.setEmployeeLastName(resultSet.getString("empl.last_name"));
             roomVO.setEmployeePosition(resultSet.getString("empl.position"));

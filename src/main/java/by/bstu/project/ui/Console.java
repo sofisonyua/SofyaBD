@@ -1,9 +1,6 @@
 package by.bstu.project.ui;
 
-import by.bstu.project.entity.Doctor;
-import by.bstu.project.entity.Employee;
-import by.bstu.project.entity.Patient;
-import by.bstu.project.entity.Room;
+import by.bstu.project.entity.*;
 import by.bstu.project.service.*;
 
 import java.util.List;
@@ -17,6 +14,7 @@ public class Console {
     private IRoomService roomService = new RoomServiceImpl();
     private IDoctorService doctorService = new DoctorServiceImpl();
     private IPatientService patientService = new PatientServiceImpl();
+    private IRoomVOService roomVOService = new RoomVOServiceImpl();
 
 
     public void menu() throws Exception {
@@ -297,21 +295,35 @@ public class Console {
                     break;
                 }
 
-                /*case 13: {
+                case 13: {
                     scanner.nextLine();
-                    System.out.println("Enter a route number to show info");
+                    System.out.println("Enter a room number to show info");
                     Integer id = inputInteger();
-                    RouteVO routeVO = routeVOService.getRouteVOByNumber(id);
-                    if (routeVO == null)
-                        System.out.println("There is no route with such number");
+                    RoomVO roomVO = roomVOService.getFullInfoById(id);
+                    if (roomVO == null)
+                        System.out.println("There is no room with such number");
                     else
-                        System.out.println(routeVO.toString());
+                        System.out.println(roomVO.toString());
                     System.out.println("Please, choose the next action");
                     item = inputInteger();
                     break;
                 }
 
                 case 14: {
+                    if (roomService.getSize() == 0) {
+                        System.out.println("The list of rooms is empty");
+                    } else {
+                        List<RoomVO> roomVOList = roomVOService.getFullInfoList();
+                        for (RoomVO roomVO : roomVOList) {
+                            System.out.println(roomVO.toString());
+                        }
+                    }
+                    System.out.println("Please, choose the next action");
+                    item = inputInteger();
+                    break;
+                }
+
+                /*case 15: {
                     fileService.writeInFile();
                     System.out.println("Please, choose the next action");
                     item = inputInteger();
