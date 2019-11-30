@@ -81,4 +81,18 @@ public class RoomDaoImpl extends AbstractDao implements IRoomDao {
         return size = resultSet.getInt(1);
     }
 
+    public Room getByEmployeeAndDoctorIds(Integer employeeId, Integer doctorId) throws Exception {
+        PreparedStatement statement = createStatement("SELECT * FROM room WHERE employee_id = ? and doctor_id = ?");
+        statement.setInt(1, employeeId);
+        statement.setInt(2, doctorId);
+        ResultSet resultSet = statement.executeQuery();
+        if (!resultSet.next())
+            return null;
+        Room room = new Room();
+        room.setId(resultSet.getInt("id"));
+        room.setEmployeeId(employeeId);
+        room.setDoctorId(doctorId);
+        return room;
+    }
+
 }
