@@ -20,9 +20,10 @@ public class RoomDaoImpl extends AbstractDao implements IRoomDao {
     }
 
     public Room insert(Room room) throws Exception {
-        PreparedStatement statement = getCreateStatement("INSERT INTO room(doctor_id, employee_id) VALUES(?, ?)", "id");
+        PreparedStatement statement = getCreateStatement("INSERT INTO room(doctor_id, employee_id, isFree) VALUES(?, ?, ?)", "id");
         statement.setInt(1, room.getDoctorId());
         statement.setInt(2, room.getEmployeeId());
+        statement.setBoolean(3, room.isFree());
         if (statement.executeUpdate() > 0) {
             ResultSet generatedKeys = statement.getGeneratedKeys();
             boolean next = generatedKeys.next();
@@ -52,6 +53,7 @@ public class RoomDaoImpl extends AbstractDao implements IRoomDao {
         room.setId(id);
         room.setDoctorId(resultSet.getInt("doctor_id"));
         room.setEmployeeId(resultSet.getInt("employee_id"));
+        room.setFree(resultSet.getBoolean("isFree"));
         return room;
     }
 
@@ -64,6 +66,7 @@ public class RoomDaoImpl extends AbstractDao implements IRoomDao {
             room.setId(resultSet.getInt("id"));
             room.setDoctorId(resultSet.getInt("doctor_id"));
             room.setEmployeeId(resultSet.getInt("employee_id"));
+            room.setFree(resultSet.getBoolean("isFree"));
             rooms.add(room);
         }
         return rooms;
@@ -92,6 +95,7 @@ public class RoomDaoImpl extends AbstractDao implements IRoomDao {
         room.setId(resultSet.getInt("id"));
         room.setEmployeeId(employeeId);
         room.setDoctorId(doctorId);
+        room.setFree(resultSet.getBoolean("isFree"));
         return room;
     }
 

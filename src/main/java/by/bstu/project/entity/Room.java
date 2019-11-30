@@ -11,4 +11,5 @@ public class Room {
     private Integer id;
     private Integer doctorId;
     private Integer employeeId;
+    private boolean isFree;
 }
