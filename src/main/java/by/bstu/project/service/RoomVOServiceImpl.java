@@ -17,4 +17,8 @@ public class RoomVOServiceImpl implements IRoomVOService {
     public List<RoomVO> getFullInfoList() throws Exception {
         return roomVODao.getFullInfoList();
     }
+
+    public List<RoomVO> getFreeRooms() throws Exception {
+        return roomVODao.getFreeRooms();
+    }
 }

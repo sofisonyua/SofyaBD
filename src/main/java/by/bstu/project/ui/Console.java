@@ -323,7 +323,17 @@ public class Console {
                     break;
                 }
 
-                /*case 15: {
+                case 15: {
+                    List<RoomVO> roomVOList = roomVOService.getFreeRooms();
+                    for (RoomVO roomVO : roomVOList) {
+                        System.out.println(roomVO.toString());
+                    }
+                    System.out.println("Please, choose the next action");
+                    item = inputInteger();
+                    break;
+                }
+
+                /*case 16: {
                     fileService.writeInFile();
                     System.out.println("Please, choose the next action");
                     item = inputInteger();
@@ -353,13 +363,14 @@ public class Console {
                 + "11 - Delete Room\n"
                 + "12 - Show list of rooms\n"
                 + "13 - Get full info of room by number\n"
-                + "14 - Show free rooms\n"
-                + "14 - Write info in file\n"
+                + "14 - Show full list info\n"
+                + "15 - Show free rooms\n"
+                + "16 - Write info in file\n"
                 + "press 0 for exit\n\n"
                 + "AFTER CHOOSING AN OPTION PLEASE PRESS ENTER");
     }
 
-    public static String inputString() {
+    private static String inputString() {
         String name = scanner.nextLine();
         while (name.length() == 0) {
             System.out.println("String can't be empty");
@@ -369,7 +380,7 @@ public class Console {
         return name;
     }
 
-    public static Integer inputInteger() {
+    private static Integer inputInteger() {
         Integer Id;
         do {
             while (!scanner.hasNextInt()) {

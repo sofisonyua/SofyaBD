@@ -7,4 +7,5 @@ import java.util.List;
 public interface IRoomVOService {
     RoomVO getFullInfoById(Integer id) throws Exception;
     List<RoomVO> getFullInfoList() throws Exception;
+    List<RoomVO> getFreeRooms() throws Exception;
 }
