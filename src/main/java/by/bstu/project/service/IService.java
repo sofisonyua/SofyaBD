@@ -13,4 +13,6 @@ public interface IService<T> {
 
     Integer getSize() throws Exception;
 
+    int update(T entity) throws Exception;
+
 }

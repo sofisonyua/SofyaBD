@@ -32,4 +32,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public Integer getSize() throws Exception {
         return employeeDao.getSize();
     }
+
+    public int update(Employee employee) throws Exception {
+        return employeeDao.update(employee);
+    }
 }

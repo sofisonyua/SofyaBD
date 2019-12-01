@@ -32,4 +32,8 @@ public class RoomServiceImpl implements IRoomService {
     public Integer getSize() throws Exception {
         return roomDao.getSize();
     }
+
+    public int update(Room room) throws Exception {
+        return roomDao.update(room);
+    }
 }

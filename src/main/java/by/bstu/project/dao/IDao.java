@@ -13,4 +13,6 @@ public interface IDao<T> {
 
     Integer getSize() throws Exception;
 
+    int update(T entity) throws Exception;
+
 }

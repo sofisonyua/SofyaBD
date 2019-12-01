@@ -102,4 +102,15 @@ public class PatientDaoImpl extends AbstractDao implements IPatientDao {
         patient.setDoctorId(resultSet.getInt("doctor_id"));
         return patient;
     }
+
+    public int update(Patient patient) throws Exception {
+        PreparedStatement statement = createStatement("UPDATE patient set patient.first_name = ?, patient.last_name = ?, patient.diagnosis = ?, patient.therapy = ?, patient.doctor_id = ? where id = ?");
+        statement.setString(1, patient.getFirstName());
+        statement.setString(2, patient.getLastName());
+        statement.setString(3, patient.getDiagnosis());
+        statement.setString(4, patient.getTherapy());
+        statement.setInt(5, patient.getDoctorId());
+        statement.setInt(6, patient.getId());
+        return statement.executeUpdate();
+    }
 }

@@ -99,4 +99,12 @@ public class RoomDaoImpl extends AbstractDao implements IRoomDao {
         return room;
     }
 
+    public int update(Room room) throws Exception {
+        PreparedStatement statement = createStatement("UPDATE room set room.doctor_id = ?, room.employee_id = ?, room.isFree = ? where id = ?");
+        statement.setInt(1, room.getDoctorId());
+        statement.setInt(2, room.getEmployeeId());
+        statement.setBoolean(3, room.isFree());
+        statement.setInt(4, room.getId());
+        return statement.executeUpdate();
+    }
 }

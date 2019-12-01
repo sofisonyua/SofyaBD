@@ -21,4 +21,5 @@ public class RoomVOServiceImpl implements IRoomVOService {
     public List<RoomVO> getFreeRooms() throws Exception {
         return roomVODao.getFreeRooms();
     }
+
 }

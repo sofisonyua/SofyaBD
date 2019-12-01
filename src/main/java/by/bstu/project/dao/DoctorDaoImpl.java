@@ -98,4 +98,14 @@ public class DoctorDaoImpl extends AbstractDao implements IDoctorDao {
         doctor.setAge(resultSet.getInt("age"));
         return doctor;
     }
+
+    public int update(Doctor doctor) throws Exception {
+        PreparedStatement statement = createStatement("UPDATE doctors set doctors.first_name = ?, doctors.last_name = ?, doctors.specialization = ?, doctors.age = ? where id = ?");
+        statement.setString(1, doctor.getFirstName());
+        statement.setString(2, doctor.getLastName());
+        statement.setString(3, doctor.getSpecialization());
+        statement.setInt(4, doctor.getAge());
+        statement.setInt(5, doctor.getId());
+        return statement.executeUpdate();
+    }
 }

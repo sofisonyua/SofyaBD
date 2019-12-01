@@ -32,4 +32,8 @@ public class DoctorServiceImpl implements IDoctorService {
     public Integer getSize() throws Exception {
         return doctorDao.getSize();
     }
+
+    public int update(Doctor doctor) throws Exception {
+        return doctorDao.update(doctor);
+    }
 }

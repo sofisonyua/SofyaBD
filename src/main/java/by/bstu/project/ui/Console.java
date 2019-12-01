@@ -223,6 +223,11 @@ public class Console {
 
                 case 10: {
                     scanner.nextLine();
+
+                    List<Doctor> docotrsList = doctorService.getEntityList();
+                    for (Doctor doctor : docotrsList)
+                        System.out.println("Doctor:" + doctor.toString() + "\n");
+
                     System.out.println("Please, enter a DoctorId");
                     Integer doctorId = inputInteger();
 
@@ -232,6 +237,10 @@ public class Console {
                         item = inputInteger();
                         break;
                     }
+
+                    List<Employee> employeeList = employeeService.getEntityList();
+                    for (Employee employee : employeeList)
+                        System.out.println(employee.toString() + "\n");
 
                     scanner.nextLine();
                     System.out.println("Please, enter a EmployeeId");
@@ -333,12 +342,164 @@ public class Console {
                     break;
                 }
 
-                /*case 16: {
-                    fileService.writeInFile();
+                case 16: {
+                    scanner.nextLine();
+                    System.out.println("Enter doctor id");
+                    Integer id = inputInteger();
+                    scanner.nextLine();
+                    System.out.println("Please, enter a firstname of doctor");
+                    String firstname = inputString();
+                    System.out.println("Please, enter a lastname of doctor");
+                    String lastname = inputString();
+                    System.out.println("Please, enter a specialization of doctor");
+                    String specialization = inputString();
+                    System.out.println("Please, enter age of doctor");
+                    Integer age = inputInteger();
+
+                    Doctor doctor = new Doctor();
+                    doctor.setId(id);
+                    doctor.setFirstName(firstname);
+                    doctor.setLastName(lastname);
+                    doctor.setSpecialization(specialization);
+                    doctor.setAge(age);
+                    if (doctorService.update(doctor) == 1) {
+                        System.out.println("Doctor was updated");
+                    } else {
+                        System.out.println("Something wrong");
+                    }
                     System.out.println("Please, choose the next action");
                     item = inputInteger();
                     break;
-                }*/
+                }
+
+                case 17: {
+                    scanner.nextLine();
+                    System.out.println("Enter an employee id");
+                    Integer id = inputInteger();
+                    System.out.println("Please, enter a firstname of Employee");
+                    String firstName = inputString();
+                    System.out.println("Please, enter a lastName");
+                    String surname = inputString();
+                    System.out.println("Please, enter a position");
+                    String position = inputString();
+                    System.out.println("Please, enter age of employee");
+                    Integer age = inputInteger();
+
+                    Employee employee = new Employee();
+                    employee.setId(id);
+                    employee.setFirstName(firstName);
+                    employee.setLastName(surname);
+                    employee.setPosition(position);
+                    employee.setAge(age);
+
+                    if (employeeService.update(employee) == 1)
+                        System.out.println("Employee updated");
+                    else System.out.println("Something goes wrong or id is incorrect");
+                    System.out.println("Please, choose the next action");
+                    item = inputInteger();
+
+                    break;
+                }
+
+                case 18: {
+                    scanner.nextLine();
+                    System.out.println("Patient id: ");
+                    Integer id = inputInteger();
+                    System.out.println("Please, enter a firstname of Patient");
+                    String firstName = inputString();
+                    System.out.println("Please, enter a lastName of Patient");
+                    String surname = inputString();
+                    System.out.println("Please, enter a diagnosis");
+                    String diagnosis = inputString();
+                    System.out.println("Please, enter a therapy");
+                    String therapy = inputString();
+
+                    List<Doctor> doctorsList = doctorService.getEntityList();
+                    for (Doctor doctor : doctorsList)
+                        System.out.println("Doctor:" + doctor.toString() + "\n");
+
+                    System.out.println("Enter doctor id of the patinet");
+                    Integer doctorId = inputInteger();
+                    if (doctorService.getEntity(doctorId) == null) {
+                        System.out.println("There is no doctor with such Id");
+                        System.out.println("Please, choose the next action");
+                        item = inputInteger();
+                        break;
+                    }
+
+                    Patient patient = new Patient();
+                    patient.setId(id);
+                    patient.setFirstName(firstName);
+                    patient.setLastName(surname);
+                    patient.setDiagnosis(diagnosis);
+                    patient.setTherapy(therapy);
+                    patient.setDoctorId(doctorId);
+
+                    if (patientService.update(patient) == 1)
+                        System.out.println("Updated successfully");
+                    else System.out.println("Something goes wrong or id is incorrect");
+                    System.out.println("Please, choose the next action");
+                    item = inputInteger();
+
+                    break;
+                }
+
+                case 19: {
+                    scanner.nextLine();
+                    System.out.println("Enter id of room");
+                    Integer id = inputInteger();
+
+                    List<Doctor> docotrsList = doctorService.getEntityList();
+                    for (Doctor doctor : docotrsList)
+                        System.out.println("Doctor:" + doctor.toString() + "\n");
+
+                    System.out.println("Please, enter a DoctorId");
+                    Integer doctorId = inputInteger();
+
+                    if (doctorService.getEntity(doctorId) == null) {
+                        System.out.println("There isn't doctor with this id\n");
+                        System.out.println("Please, choose the next action");
+                        item = inputInteger();
+                        break;
+                    }
+
+                    List<Employee> employeeList = employeeService.getEntityList();
+                    for (Employee employee : employeeList)
+                        System.out.println(employee.toString() + "\n");
+
+                    scanner.nextLine();
+                    System.out.println("Please, enter a EmployeeId");
+                    Integer employeeId = inputInteger();
+
+                    if (employeeService.getEntity(employeeId) == null) {
+                        System.out.println("There isn't bus with this id\n");
+                        System.out.println("Please, choose the next action");
+                        item = inputInteger();
+                        break;
+                    }
+
+                    scanner.nextLine();
+                    System.out.println("Enter a status of room: \n" +
+                            "1 - free\n" +
+                            "2 - not free\n");
+                    Integer status = inputInteger();
+                    boolean isFree;
+
+                    isFree = status.equals(1);
+
+                    Room room = new Room();
+                    room.setId(id);
+                    room.setDoctorId(doctorId);
+                    room.setEmployeeId(employeeId);
+                    room.setFree(isFree);
+
+                    if (roomService.update(room) == 1)
+                        System.out.println("Room was updated");
+                    else System.out.println("Something goes wrong or id is incorrect");
+                    System.out.println("Please, choose the next action");
+                    item = inputInteger();
+                    break;
+                }
 
                 default:
                     item = 0;
@@ -365,7 +526,10 @@ public class Console {
                 + "13 - Get full info of room by number\n"
                 + "14 - Show full list info\n"
                 + "15 - Show free rooms\n"
-                + "16 - Write info in file\n"
+                + "16 - Update doctor\n"
+                + "17 - Update employee\n"
+                + "19 - Update patient\n"
+                + "20 - Update room\n"
                 + "press 0 for exit\n\n"
                 + "AFTER CHOOSING AN OPTION PLEASE PRESS ENTER");
     }

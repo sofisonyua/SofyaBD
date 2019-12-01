@@ -98,4 +98,14 @@ public class EmployeeDaoImpl extends AbstractDao implements IEmployeeDao {
         employee.setAge(resultSet.getInt("age"));
         return employee;
     }
+
+    public int update(Employee employee) throws Exception {
+        PreparedStatement statement = createStatement("UPDATE employee set employee.first_name = ?, employee.last_name = ?, employee.position = ?, employee.age = ? where id = ?");
+        statement.setString(1, employee.getFirstName());
+        statement.setString(2, employee.getLastName());
+        statement.setString(3, employee.getPosition());
+        statement.setInt(4, employee.getAge());
+        statement.setInt(5, employee.getId());
+        return statement.executeUpdate();
+    }
 }
