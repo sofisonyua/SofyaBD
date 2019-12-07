@@ -1,7 +1,9 @@
 package by.bstu.project.file;
 
 import by.bstu.project.entity.RoomVO;
-import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.File;
@@ -19,7 +21,7 @@ public class PdfWrite {
 
             for (RoomVO roomVO : fullList) {
                 Paragraph p = new Paragraph();
-                p.add(roomVO.toString()+"\n");
+                p.add(formatString(roomVO));
                 p.setAlignment(Element.ALIGN_LEFT);
                 document.add(p);
             }
@@ -32,5 +34,13 @@ public class PdfWrite {
             System.out.println("something goes wrong");
         }
 
+    }
+
+    private String formatString(RoomVO roomVO) {
+        return "RoomId: " + roomVO.getId().toString() + "\n" +
+                "Doctor FirstName: " + roomVO.getDoctorFirstName() + "\n" + "LastName " + roomVO.getDoctorLastName() + "\n" +
+                "Doctor Specialization: " + roomVO.getDoctorSpecialization() + "\n" + "Doctor Age " + roomVO.getDoctorAge().toString() + "\n" +
+                "Employee FirstName " + roomVO.getEmployeeFirstName() + "\n" + "Employee LastName: " + roomVO.getEmployeeLastName() + "\n" + "Employee position: " +
+                roomVO.getEmployeePosition() + "\n" + "Employee age: " + roomVO.getEmployeeAge().toString() + "\n\n";
     }
 }
