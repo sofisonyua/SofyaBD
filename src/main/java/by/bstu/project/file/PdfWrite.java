@@ -16,9 +16,9 @@ public class PdfWrite {
             PdfWriter.getInstance(document, new FileOutputStream(new File(fileName + ".pdf")));
 
             document.open();
-            Paragraph p = new Paragraph();
 
             for (RoomVO roomVO : fullList) {
+                Paragraph p = new Paragraph();
                 p.add(roomVO.toString()+"\n");
                 p.setAlignment(Element.ALIGN_LEFT);
                 document.add(p);
