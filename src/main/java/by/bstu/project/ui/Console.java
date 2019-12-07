@@ -1,6 +1,7 @@
 package by.bstu.project.ui;
 
 import by.bstu.project.entity.*;
+import by.bstu.project.file.PdfWrite;
 import by.bstu.project.service.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class Console {
     private IDoctorService doctorService = new DoctorServiceImpl();
     private IPatientService patientService = new PatientServiceImpl();
     private IRoomVOService roomVOService = new RoomVOServiceImpl();
+    private PdfWrite pdfWrite = new PdfWrite();
 
 
     public void menu() throws Exception {
@@ -501,6 +503,14 @@ public class Console {
                     break;
                 }
 
+                case 21:{
+                    List<RoomVO> roomVOList = roomVOService.getFullInfoList();
+                    System.out.println("Please, enter a filename");
+                    scanner.nextLine();
+                    String fileName = inputString();
+                    pdfWrite.write(fileName, roomVOList);
+                }
+
                 default:
                     item = 0;
             }
@@ -530,6 +540,7 @@ public class Console {
                 + "17 - Update employee\n"
                 + "19 - Update patient\n"
                 + "20 - Update room\n"
+                + "21 - Save in file\n"
                 + "press 0 for exit\n\n"
                 + "AFTER CHOOSING AN OPTION PLEASE PRESS ENTER");
     }
