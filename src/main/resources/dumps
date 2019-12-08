@@ -1,0 +1,45 @@
+create table doctors
+(
+    id             int auto_increment
+        primary key,
+    first_name     varchar(255) not null,
+    last_name      varchar(255) not null,
+    specialization varchar(255) not null,
+    age            int          not null
+);
+
+create table employee
+(
+    id         int auto_increment
+        primary key,
+    first_name varchar(255) not null,
+    last_name  varchar(255) not null,
+    age        int          not null,
+    position   varchar(255) not null
+);
+
+create table patient
+(
+    id         int auto_increment
+        primary key,
+    first_name varchar(255) not null,
+    last_name  varchar(255) not null,
+    diagnosis  varchar(255) not null,
+    therapy    varchar(255) null,
+    doctor_id  int          not null,
+    constraint patient_doctors_id_fk
+        foreign key (doctor_id) references doctors (id)
+);
+
+create table room
+(
+    id          int auto_increment
+        primary key,
+    doctor_id   int        not null,
+    employee_id int        not null,
+    isFree      tinyint(1) not null,
+    constraint room_doctors_id_fk
+        foreign key (doctor_id) references doctors (id),
+    constraint room_employee_id_fk
+        foreign key (employee_id) references employee (id)
+);
